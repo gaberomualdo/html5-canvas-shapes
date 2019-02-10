@@ -36,7 +36,7 @@
 		ctx.fillStyle = color;
 		ctx.fill();
 	}
-	function generateCanvasShapes(amount, xrange, yrange, widthrange,heightrange){
+	function generateCanvasShapes(amount, xrange, yrange, rect){
 		for(var i = 0;i < amount;i++){
 			var x = Math.floor(Math.random() * Math.abs(xrange[0] - xrange[1])) + xrange[0];
 			var y = Math.floor(Math.random() * Math.abs(yrange[0] - yrange[1])) + yrange[0];
@@ -49,10 +49,14 @@
 			var g = Math.floor(Math.random() * 256);
 			var b = Math.floor(Math.random() * 256);
 
-			drawRect(context, x, y, width, height, "rgba(" + r + "," + g + "," + b + "," + opacity + ")");
+			if(rect){
+				drawRect(context, x, y, width, height, "rgba(" + r + "," + g + "," + b + "," + opacity + ")");
+			}else{
+				drawEllipse(context, x, y, width, height, "rgba(" + r + "," + g + "," + b + "," + opacity + ")");
+			}
 		}
 	}
-	generateCanvasShapes(75, [0, 800], [0, 600]);
+	generateCanvasShapes(175, [0, 800], [0, 600], true);
 	</script>
 </body>
 </html>
