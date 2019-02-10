@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Canvas Circles</title>
+</head>
+<body>
+	<canvas></canvas>
+	<script>
+	var canvas = document.querySelector("canvas");
+	canvas.height = 600;
+	canvas.width = 800;
+
+	var context = canvas.getContext("2d");
+
+	function drawEllipse(ctx, x, y, w, h, color) {
+		var kappa = .5522848,
+		ox = (w / 2) * kappa, // control point offset horizontal
+		oy = (h / 2) * kappa, // control point offset vertical
+		xe = x + w,           // x-end
+		ye = y + h,           // y-end
+		xm = x + w / 2,       // x-middle
+		ym = y + h / 2;       // y-middle
+
+		ctx.beginPath();
+		ctx.moveTo(x, ym);
+		ctx.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+		ctx.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+		ctx.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+		ctx.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	for(var i = 0;i < 125;i++){
+		var x = Math.floor(Math.random() * 800);
+		var y = Math.floor(Math.random() * 600);
+		var width = Math.floor(Math.random() * (800 - x));
+		var height = Math.floor(Math.random() * (600 - y));
+		var opacity = (Math.floor(Math.random() * 500)) / 1000;
+		drawEllipse(context, x, y, width, height, "rgba(0,0,0," + opacity + ")");
+	}
+	</script>
+</body>
+</html>
