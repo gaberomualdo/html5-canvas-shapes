@@ -31,13 +31,19 @@
 		ctx.fillStyle = color;
 		ctx.fill();
 	}
-	for(var i = 0;i < 125;i++){
+	for(var i = 0;i < 175;i++){
 		var x = Math.floor(Math.random() * 800);
 		var y = Math.floor(Math.random() * 600);
 		var width = Math.floor(Math.random() * (800 - x));
 		var height = Math.floor(Math.random() * (600 - y));
-		var opacity = (Math.floor(Math.random() * 500)) / 1000;
-		drawEllipse(context, x, y, width, height, "rgba(0,0,0," + opacity + ")");
+		
+		var opacity = (Math.floor(Math.random() * 700)) / 1000;
+
+		var r = Math.floor(Math.random() * 256);
+		var g = Math.floor(Math.random() * 256);
+		var b = Math.floor(Math.random() * 256);
+
+		drawEllipse(context, x, y, width, height, "rgba(" + r + "," + g + "," + b + "," + opacity + ")");
 	}
 	</script>
 </body>
